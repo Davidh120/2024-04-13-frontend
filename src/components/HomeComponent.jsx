@@ -4,7 +4,7 @@ import Cellphone from '../assets/Telefono-01.png'
 export const HomeComponent = () => {
 
     return (
-        <section className="h-screen font-montserrat" >
+        <section className="h-screen font-montserrat overflow-hidden max-w-full" >
             <div className='h-screen absolute top-0 left-0 w-screen'>
                 <Logo className='left-[58px] top-[43px] absolute ' />
 
@@ -31,7 +31,7 @@ export const HomeComponent = () => {
                 </ul>
             </div>
 
-            
+            <div  className='h-[130vh] w-[200vw] relative top-[-15vh] left-full -z-10 rounded-[800px] shadow-[-22px_0px_57px_-15px_rgba(0,0,0,1)] animate-wave-left'></div>
         </section>
     )
 }

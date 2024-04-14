@@ -15,7 +15,18 @@ export default {
       },
       fontFamily: {
         'montserrat' : ["Montserrat", "sans-serif"]
+      },
+      keyframes: {
+        'wave': {
+          '0%': {transform: 'translateX(0)'},
+          '100%': {transform: 'translateX(-65%)'},
+
+        },
+      },
+      animation: {
+        'wave-left': 'wave 3s  infinite'
       }
+      
     },
   },
   plugins: [
