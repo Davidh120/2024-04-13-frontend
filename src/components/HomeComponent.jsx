@@ -1,20 +1,34 @@
 import  Logo from '../assets/Imagologo_motion.svg?react'
-
+import Cellphone from '../assets/Telefono-01.png'
 
 export const HomeComponent = () => {
 
     return (
-        <section className="h-screen" >
-            <div className='h-screen'>
+        <section className="h-screen font-montserrat" >
+            <div className='h-screen absolute top-0 left-0 w-screen'>
                 <Logo className='left-[58px] top-[43px] absolute ' />
-                <div className=' font-montserrat text-center font-bold text-blue1 my-auto' >
-                    <h1 className=' text-[140px] '>
-                        BIENVENIDO A 
-                    </h1>
-                    <h1 className=' text-[90px] border-white border-4'>
-                        MONITORING INNOVATION
-                    </h1>
+
+                <div className='top-0 h-[85vh] w-full absolute flex items-center justify-center'>
+                    <img className='' src={Cellphone} alt="Icon with a cellphone" />                    
                 </div>
+
+                <div className='top-0 h-[85vh] '>
+                    <div className=' text-center font-bold text-blue1 h-full flex flex-col justify-center' >
+                        <h1 className=' text-[140px]'>
+                            BIENVENIDO A 
+                        </h1>
+                        <h1 className=' text-[90px] z-10' style={{ textShadow: "-4px -4px 0 #fff, 4px -4px 0 #fff, -4px 4px 0 #fff, 4px 4px 0 #fff" }}>
+                            MONITORING INNOVATION
+                        </h1>
+                    </div>
+                </div>
+
+                <ul className='h-[15vh] flex justify-around text-blue2 text-[20px] font-medium'>
+                    <a href="">MONITORING INNOVATION</a>
+                    <a href="">GPS CONTROL</a>
+                    <a href="">Link repo front</a>
+                    <a href="">Link repo back</a>
+                </ul>
             </div>
 
             
