@@ -4,13 +4,17 @@
 export const Data = () => {
     return(
         <section className=" h-screen font-montserrat">
-            Data
-            <div>
-
+            <div className="h-[85vh]">
+                <div>
+                    To create
+                </div>
+                <div>
+                    To View
+                </div>
             </div>
-            <div>
-
-            </div>
+            <footer>
+                Footer
+            </footer>
         </section>
     )
 }
