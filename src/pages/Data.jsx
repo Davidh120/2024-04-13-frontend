@@ -1,20 +1,16 @@
-import { useEffect, useState, useContext } from 'react'
-
-import axios from "axios";
+import { useEffect, useContext } from 'react'
 
 import { DataContext } from '../context/DataContextProvider';
 
-import { FormInput } from '../components/FormInput'
 import { TableHeader } from '../components/TableHeader'
 import { TableData } from '../components/TableData'
 import { DataLoading } from '../components/DataLoading'
 import { NotDataJet} from '../components/NotDataJet'
+import { DataForm } from '../components/DataForm';
 
 import  LogoName from '../assets/Imagologotipo_motion.svg?react'
 import Plus from '../assets/Icon_crear.svg?react'
-import Car from '../assets/Icon_vehiculo.svg?react'
-import Location from '../assets/Icon_puntoubicacion.svg?react'
-import Person from '../assets/Icon_persona.svg?react'
+
 
 
 
@@ -23,19 +19,7 @@ export const Data = () => {
     const dataContext = useContext(DataContext)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const backendUrl = import.meta.env.VITE_BACKEND_URL
-                const data = await axios.get(`${backendUrl}/candidates/get`)
-                let response = data.data.response
-                response.reverse()
-                dataContext.setCandidatesData(response)
-                return response
-            } catch (error) {
-                return  {'response': 'not data'} //qap to review ----------
-            }
-        }
-        fetchData()
+        dataContext.fetchData()
     }, [])
 
     const printData = () => {
@@ -49,14 +33,12 @@ export const Data = () => {
             )
         } else {                
             return dataContext.candidatesData.map((item) => (
-                <TableData key={item.id}  brand={item.brand} office={item.office} candidate={item.name} />
+                <TableData key={item.id} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
             ))
             
         }
     }
     
-
-
     return(
         <section className=" h-screen font-montserrat">
             <div className="h-[85vh] flex">
@@ -65,11 +47,7 @@ export const Data = () => {
                         <div className=' relative top-[13px] left-[28px]' >
                             <Plus />
                         </div>
-                        <div className=' absolute flex flex-col h-full w-full p-8 top-0 justify-around aroun '>
-                            <FormInput name='Brand' icon={<Car />} />
-                            <FormInput name='Office' icon={<Location />} />
-                            <FormInput name='Candidate' icon={<Person />} />
-                        </div>
+                        <DataForm />
                     </div>
                 </div>
                 <div className='mt-[98px] w-full '>

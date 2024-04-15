@@ -1,13 +1,31 @@
+import { useContext } from 'react'
+
+import axios from "axios";
+
+import {DataContext} from '../context/DataContextProvider'
+
 import Modifier from '../assets/Icon_editar1.svg?react'
-import Deleter from '../assets/Icon_eliminar1.svg?react'
+import Remover from '../assets/Icon_eliminar1.svg?react'
 
 
 export const TableData = (props) => {
 
-    const deleteCandidate = (id) => {
-        for (let candidate of candidatesData) {
-            console.log(candidate)
+    const dataContext = useContext(DataContext)
+
+    const deleteCandidate = async (id) => {
+        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
+
+        try {
+            const backendUrl = import.meta.env.VITE_BACKEND_URL
+            const data = await axios.delete(`${backendUrl}/candidates/delete/${id}`)
+            console.log(data)
+
+            dataContext.fetchData()
+
+        } catch (error) {
+            console.log(error)
         }
+        
     }
 
     return(
@@ -23,8 +41,12 @@ export const TableData = (props) => {
                     {props.candidate}
                 </p>
                 <div className='flex items-center'> 
-                    <Modifier />
-                    <Deleter className='ml-3' />
+                    <div>
+                        <Modifier />
+                    </div>
+                    <div className='ml-3' onClick={() => deleteCandidate(props.id)} >
+                        <Remover/>
+                    </div>
                 </div>
                 
             </div>
