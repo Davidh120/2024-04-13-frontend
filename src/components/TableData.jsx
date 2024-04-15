@@ -4,6 +4,12 @@ import Deleter from '../assets/Icon_eliminar1.svg?react'
 
 export const TableData = (props) => {
 
+    const deleteCandidate = (id) => {
+        for (let candidate of candidatesData) {
+            console.log(candidate)
+        }
+    }
+
     return(
         <div className='flex font-montserrat text-gray1 font-[500] text-[28.73px] border-b-[2.3px] border-red2 h-[50px] justify-between'>
             <p className='w-[246px] flex items-center'>

@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 
 import axios from "axios";
+
+import { DataContext } from '../context/DataContextProvider';
 
 import { FormInput } from '../components/FormInput'
 import { TableHeader } from '../components/TableHeader'
@@ -18,7 +20,7 @@ import Person from '../assets/Icon_persona.svg?react'
 
 export const Data = () => {
 
-    const [candidatesData, setCandidatesData] = useState(null)
+    const dataContext = useContext(DataContext)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,33 +29,32 @@ export const Data = () => {
                 const data = await axios.get(`${backendUrl}/candidates/get`)
                 let response = data.data.response
                 response.reverse()
-                setCandidatesData(response)
+                dataContext.setCandidatesData(response)
                 return response
             } catch (error) {
-                return  {'response': 'not data'}
+                return  {'response': 'not data'} //qap to review ----------
             }
         }
         fetchData()
     }, [])
 
     const printData = () => {
-        if (candidatesData == null){
+        if (dataContext.candidatesData == null){
             return (
                 <DataLoading />     
             )
-        } else if (candidatesData == []){
+        } else if (dataContext.candidatesData == []){
             return (
                 <NotDataJet />
             )
         } else {                
-            return candidatesData.map((item) => (
+            return dataContext.candidatesData.map((item) => (
                 <TableData key={item.id}  brand={item.brand} office={item.office} candidate={item.name} />
             ))
             
         }
     }
-
-     
+    
 
 
     return(
