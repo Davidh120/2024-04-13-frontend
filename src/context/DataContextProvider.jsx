@@ -1,12 +1,17 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useRef} from "react";
 import axios from "axios";
 
 export const DataContext = createContext()
 
 export const DataContextProvider = (props) => {
 
-    const [candidatesData, setCandidatesData] = useState(null)
+    const [candidatesData, setCandidatesData] = useState(null) // an array to save the data of the candidates to show
+    const [openToCreate, setOpenToCreate] = useState(false) // tell us if the form is open to create new candidate or closed
+    const [openToEdit, setOpenToEdit] = useState(false) // tell us if the form is open to edit a candidate or closed
     
+    const brandRef = useRef(null)
+    const officeRef = useRef(null)
+    const candidateRef = useRef(null)
 
     const fetchData = async () => {
         try {
@@ -27,6 +32,14 @@ export const DataContextProvider = (props) => {
             candidatesData,
             setCandidatesData,
             fetchData,
+            openToCreate,
+            setOpenToCreate,
+            openToEdit,
+            setOpenToEdit,
+            brandRef,
+            officeRef,
+            candidateRef,
+
         }}>
             {props.children}
         </DataContext.Provider>
