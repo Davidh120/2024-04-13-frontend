@@ -29,12 +29,15 @@ export const DataForm = () => {
     }
 
     const createCandidate = async () => {
+        if (dataContext.candidateRef.current.value.length < 4 || 
+            dataContext.brandRef.current.value.length < 1  || 
+            dataContext.officeRef.current.value.length < 4 ){
+            return null
+        }
         dataContext.setCandidatesData([
             {id: 0, name: dataContext.candidateRef.current.value, brand: dataContext.brandRef.current.value, office: dataContext.officeRef.current.value},
             ...dataContext.candidatesData
         ])
-        console.log({id: 0, name: dataContext.candidateRef.current.value, brand: dataContext.brandRef.current.value, office: dataContext.officeRef.current.value})
-
         try {
             const backendUrl = import.meta.env.VITE_BACKEND_URL
             const data = await axios.post(`${backendUrl}/candidates/new`,
@@ -50,6 +53,7 @@ export const DataForm = () => {
 
         } catch (error) {
             console.log(error)
+            dataContext.fetchData()
         }
         
     }
@@ -62,9 +66,9 @@ export const DataForm = () => {
             </div>
 
             <div className=' absolute flex flex-col h-full w-full p-8 top-0 justify-around  '>
-                <FormInput reference={dataContext.brandRef} name='Marca' icon={dataContext.openToCreate || dataContext.openToEdit ? <CarColor/ > : <Car/ > } />
-                <FormInput reference={dataContext.officeRef} name='Sucursal' icon={dataContext.openToCreate || dataContext.openToEdit ? <LocationColor/ > : <Location/ >} />
-                <FormInput reference={dataContext.candidateRef} name='Aspirante' icon={dataContext.openToCreate || dataContext.openToEdit ? <PersonColor/ > : <Person/ >} />
+                <FormInput  max ={20} reference={dataContext.brandRef} name='Marca' icon={dataContext.openToCreate || dataContext.openToEdit ? <CarColor/ > : <Car/ > } />
+                <FormInput  max ={20} reference={dataContext.officeRef} name='Sucursal' icon={dataContext.openToCreate || dataContext.openToEdit ? <LocationColor/ > : <Location/ >} />
+                <FormInput  max ={30} reference={dataContext.candidateRef} name='Aspirante' icon={dataContext.openToCreate || dataContext.openToEdit ? <PersonColor/ > : <Person/ >} />
 
                 <div className={`${dataContext.openToCreate || dataContext.openToEdit ? '' : 'hidden'} w-full flex justify-around `}>
                     <div className='w-[49px]'>
