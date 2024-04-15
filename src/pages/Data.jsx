@@ -6,6 +6,7 @@ import Person from '../assets/Icon_persona.svg?react'
 
 import { FormInput } from '../components/FormInput'
 import { TableHeader } from '../components/TableHeader'
+import { TableData } from '../components/TableData'
 
 export const Data = () => {
     return(
@@ -24,12 +25,16 @@ export const Data = () => {
                     </div>
                 </div>
                 <div className='mt-[98px] w-full '>
-                    <div>
-                        <div className='flex justify-around px-16'>
+                    <div className='px-16'>
+                        <div className='flex justify-between '>
                             <TableHeader name='Marca' width={246} />
                             <TableHeader name='Sucursal' width={246} />
                             <TableHeader name='Aspirante' width={385} />
                         </div>
+                        <div className=''>
+                            <TableData brand='Mazda' office='Chapinero' candidate='David Sandoval' />
+                        </div>
+                        
                     </div>
                     
                 </div>
