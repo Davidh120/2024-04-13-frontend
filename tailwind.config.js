@@ -9,7 +9,7 @@ export default {
       colors: {
         'blue1': '#00249c',
         'blue2' : '#40cee4',
-        'grey1' : '#c5c5c5',
+        'gray1' : '#c5c5c5',
         'red2' : '#e280be',
         'red1' : '#c6007e'
       },
