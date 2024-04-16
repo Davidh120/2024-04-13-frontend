@@ -29,11 +29,16 @@ export default {
           '0%': {transform: 'translateY(0)'},
           '100%': {transform: 'translateY(50px)'},
         },
+        'get-up': {
+          '0%': {transform: 'translateY(0)'},
+          '100%': {transform: 'translateY(-50px)'},
+        },
       },
       animation: {
         'wave-left': 'wave 3s  infinite',
         'erase-in-left': 'erase-in-l 0.15s ',
-        'get-down': 'get-down 0.2s '
+        'get-down': 'get-down 0.2s ',
+        'get-up': 'get-up 0.2s '
       }
       
     },

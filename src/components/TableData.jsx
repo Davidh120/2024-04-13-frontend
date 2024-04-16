@@ -15,7 +15,10 @@ export const TableData = (props) => {
     const dataContext = useContext(DataContext)
 
     const deleteCandidate = async (id) => {
-        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
+        
+        dataContext.setGetUpAnimation(true)
+        setTimeout( async () => {
+            dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
 
         try {
             const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -23,10 +26,14 @@ export const TableData = (props) => {
             console.log(data)
 
             dataContext.fetchData()
+            dataContext.setGetUpAnimation(false)
 
         } catch (error) {
             console.log(error)
         }
+        }, 200);
+
+        
         
     }
 

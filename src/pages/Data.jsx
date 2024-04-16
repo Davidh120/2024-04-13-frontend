@@ -53,7 +53,7 @@ export const Data = () => {
                             <TableHeader name='Sucursal' width={246} />
                             <TableHeader name='Aspirante' width={385} />
                         </div>
-                        <div className={` ${dataContext.getDownAnimation ? 'animate-get-down' : ''}  `}>                 
+                        <div className={` ${dataContext.getDownAnimation ? 'animate-get-down' : ''} ${dataContext.getUpAnimation ? ' animate-get-up' : ''}  `}>                 
                             {printData()}
                         </div>
                         

@@ -11,6 +11,7 @@ export const DataContextProvider = (props) => {
     const [openToEdit, setOpenToEdit] = useState(false) // tell us if the form is open to edit a candidate or closed
     const [isEditing, setIsEditing] = useState(false)
     const [getDownAnimation, setGetDownAnimation] = useState(false) // helpus to print a class name to start a animation 
+    const [getUpAnimation, setGetUpAnimation] = useState(false) // helpus to print a class name to start a animation 
 
     const brandRef = useRef(null)
     const officeRef = useRef(null)
@@ -55,6 +56,8 @@ export const DataContextProvider = (props) => {
             clearForm,
             getDownAnimation,
             setGetDownAnimation,
+            getUpAnimation,
+            setGetUpAnimation
             
 
         }}>
