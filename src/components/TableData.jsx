@@ -16,22 +16,38 @@ export const TableData = (props) => {
 
     const deleteCandidate = async (id) => {
         
-        dataContext.setGetUpAnimation(true)
-        setTimeout( async () => {
-            dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
-
-        try {
-            const backendUrl = import.meta.env.VITE_BACKEND_URL
-            const data = await axios.delete(`${backendUrl}/candidates/delete/${id}`)
-            console.log(data)
-
-            dataContext.fetchData()
-            dataContext.setGetUpAnimation(false)
-
-        } catch (error) {
-            console.log(error)
+        dataContext.setGetUpAnimation(true) // qap
+        dataContext.setDeletingNow(true)
+        let changeArray = false
+        let arrayA = []
+        let arrayB = []
+        for (let candidate of dataContext.candidatesData){
+            if (candidate.id == id){
+                changeArray = true
+            }
+            if (!changeArray){
+                arrayA.push(candidate)
+            }else {
+                arrayB.push(candidate)
+            }
         }
-        }, 200);
+        dataContext.setCandidatesData1(arrayA)
+        dataContext.setCandidatesData2(arrayB)
+        setTimeout( async () => {
+            
+            try {
+                const backendUrl = import.meta.env.VITE_BACKEND_URL
+                const data = await axios.delete(`${backendUrl}/candidates/delete/${id}`)
+                console.log(data)
+
+                dataContext.fetchData()
+                dataContext.setGetUpAnimation(false) // qap
+                dataContext.setDeletingNow(false)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }, 2000);
 
         
         

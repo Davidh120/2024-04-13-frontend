@@ -12,7 +12,9 @@ export const DataContextProvider = (props) => {
     const [isEditing, setIsEditing] = useState(false)
     const [getDownAnimation, setGetDownAnimation] = useState(false) // helpus to print a class name to start a animation 
     const [getUpAnimation, setGetUpAnimation] = useState(false) // helpus to print a class name to start a animation 
-
+    const [deletingNow, setDeletingNow] = useState(false) // help us to define what should be render when we are removing a candidate
+    const [candidatesData1, setCandidatesData1] = useState(null) 
+    const [candidatesData2, setCandidatesData2] = useState(null) 
     const brandRef = useRef(null)
     const officeRef = useRef(null)
     const candidateRef = useRef(null)
@@ -57,7 +59,13 @@ export const DataContextProvider = (props) => {
             getDownAnimation,
             setGetDownAnimation,
             getUpAnimation,
-            setGetUpAnimation
+            setGetUpAnimation,
+            deletingNow,
+            setDeletingNow,
+            candidatesData1,
+            setCandidatesData1,
+            candidatesData2,
+            setCandidatesData2,
             
 
         }}>

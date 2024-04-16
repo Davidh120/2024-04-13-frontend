@@ -31,10 +31,30 @@ export const Data = () => {
             return (
                 <NotDataJet />
             )
-        } else {                
-            return dataContext.candidatesData.map((item,index) => (
-                <TableData key={index} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
-            ))
+        } else {
+            if (!dataContext.deletingNow ){
+                return dataContext.candidatesData.map((item,index) => (
+                    <TableData key={index} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
+                ))
+            } else {
+                return (
+                    <div>
+                        <div className=' '>
+                            {dataContext.candidatesData1.map((item,index) => (
+                            <TableData key={index} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
+                            ))}
+                        </div>
+                        
+                        <div className={`${dataContext.getUpAnimation ? ' animate-get-up' : ''}`} >
+                            {dataContext.candidatesData2.map((item,index) => (
+                            <TableData key={index} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
+                            ))}
+                        </div>
+                    </div>
+                )
+            
+            }
+            
             
         }
     }
@@ -53,7 +73,7 @@ export const Data = () => {
                             <TableHeader name='Sucursal' width={246} />
                             <TableHeader name='Aspirante' width={385} />
                         </div>
-                        <div className={` ${dataContext.getDownAnimation ? 'animate-get-down' : ''} ${dataContext.getUpAnimation ? ' animate-get-up' : ''}  `}>                 
+                        <div className={` ${dataContext.getDownAnimation ? 'animate-get-down' : ''}   `}>                 
                             {printData()}
                         </div>
                         
