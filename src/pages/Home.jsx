@@ -12,11 +12,11 @@ export const Home = () => {
             <div className='h-screen absolute top-0 left-0 w-screen'>
                 <Logo className='left-[58px] top-[43px] absolute ' />
 
-                <div className='top-0 h-[95vh] w-full absolute flex items-center justify-center hover:cursor-pointer ' onClick={() =>  navigate('/data')}>
-                    <img className='w-[667px] ' src={Cellphone} alt="Icon with a cellphone" />                    
+                <div className='top-0 h-[92vh] w-full absolute flex items-center justify-center hover:cursor-pointer ' onClick={() =>  navigate('/data')}>
+                    <img className=' w-[667px] ' src={Cellphone} alt="Icon with a cellphone" />                    
                 </div>
 
-                <div className='top-0 h-[95vh] hover:cursor-pointer ' onClick={() =>  navigate('/data')}>
+                <div className='top-0 h-[92vh] hover:cursor-pointer ' onClick={() =>  navigate('/data')}>
                     <div className=' text-center font-bold text-blue1 h-full flex flex-col justify-center' >
                         <h1 className=' h-[140px] text-[140px]'>
                             BIENVENIDO A 
@@ -30,7 +30,7 @@ export const Home = () => {
                     </div>
                 </div>
 
-                <ul className='h-[5vh] flex justify-around text-blue2 text-[20px] font-medium'>
+                <ul className='h-[8vh] flex justify-around text-blue2 text-[20px] font-medium'>
                     <a href="https://monitoringinnovation.com/" target="_blank">MONITORING INNOVATION</a>
                     <a href="https://gpscontrol.co/" target="_blank">GPS CONTROL</a>
                     <a href="https://github.com/JuanJoven01/2024-04-13-frontend" target="_blank">Link repo front</a>
