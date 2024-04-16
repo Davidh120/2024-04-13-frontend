@@ -20,11 +20,15 @@ export default {
         'wave': {
           '0%': {transform: 'translateX(0)'},
           '100%': {transform: 'translateX(-65%)'},
-
+        },
+        'erase-in-l': {
+          '0%': {transform: 'translateX(-200%)'},
+          '100%': {transform: 'translateX(0)'},
         },
       },
       animation: {
-        'wave-left': 'wave 3s  infinite'
+        'wave-left': 'wave 3s  infinite',
+        'erase-in-left': 'erase-in-l 0.15s '
       }
       
     },

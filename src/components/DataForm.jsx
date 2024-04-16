@@ -122,7 +122,7 @@ export const DataForm = () => {
                     <div className='w-[49px]'>
 
                     </div>
-                    <div className={`flex justify-between w-[411.03px] ${dataContext.openToCreate ? '' : 'hidden'}  `}>
+                    <div className={`flex justify-between w-[411.03px] ${dataContext.openToCreate ? '' : 'hidden'} animate-erase-in-left  `}>
                         <button className='h-[45px] w-[175px] border-2 border-red1 rounded-[10px] text-[28.66px] text-gray1 font-[500] ' onClick={() => {setCloseToCreate()}}>
                             Cancelar
                         </button>
