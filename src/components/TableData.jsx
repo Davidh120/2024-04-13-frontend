@@ -32,12 +32,12 @@ export const TableData = (props) => {
 
     const sendCandidateToUpdate = () => {
         dataContext.setOpenToEdit(true)
+        dataContext.setIsEditing(true)
+        dataContext.setOpenToCreate(false)
         dataContext.setIdToEdit(props.id)
         dataContext.brandRef.current.value = props.brand
         dataContext.officeRef.current.value = props.office
         dataContext.candidateRef.current.value = props.candidate
-        dataContext.setIsEditing(true)
-        dataContext.setOpenToCreate(false)
     }
 
     const printRemover = () => {

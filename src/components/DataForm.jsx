@@ -24,7 +24,8 @@ export const DataForm = () => {
 
     const setOpenToCreate = () => {
         dataContext.setOpenToCreate(true)
-        setCloseToEdit(false)
+        dataContext.setOpenToEdit(false)
+        dataContext.setIsEditing(false)
     }
 
     const setCloseToCreate = () => {
