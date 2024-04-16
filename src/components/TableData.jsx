@@ -6,6 +6,8 @@ import {DataContext} from '../context/DataContextProvider'
 
 import Modifier from '../assets/Icon_editar1.svg?react'
 import Remover from '../assets/Icon_eliminar1.svg?react'
+import ModifierGray from '../assets/Icon_editar.svg?react'
+import RemoverGray from '../assets/Icon_eliminar.svg?react'
 
 
 export const TableData = (props) => {
@@ -28,6 +30,31 @@ export const TableData = (props) => {
         
     }
 
+    const sendCandidateToUpdate = () => {
+        dataContext.setOpenToEdit(true)
+        dataContext.setIdToEdit(props.id)
+        dataContext.brandRef.current.value = props.brand
+        dataContext.officeRef.current.value = props.office
+        dataContext.candidateRef.current.value = props.candidate
+        dataContext.setIsEditing(true)
+    }
+
+    const printRemover = () => {
+        if (dataContext.isEditing && dataContext.idToEdit != props.id){
+            return <RemoverGray/>
+        }else {
+            return <Remover/>
+        }
+    }
+
+    const printModifier = () => {
+        if (dataContext.isEditing && dataContext.idToEdit != props.id){
+            return <ModifierGray />
+        }else {
+            return <Modifier />
+        }
+    }
+
     return(
         <div className='flex font-montserrat text-gray1 font-[500] text-[28.73px] border-b-[2.3px] border-red2 h-[50px] justify-between'>
             <p className='w-[246px] flex items-center'>
@@ -41,11 +68,11 @@ export const TableData = (props) => {
                     {props.candidate}
                 </p>
                 <div className='flex items-center'> 
-                    <div>
-                        <Modifier />
+                    <div className='hover:cursor-pointer' onClick={() => sendCandidateToUpdate()}>
+                        {printModifier()}
                     </div>
-                    <div className='ml-3' onClick={() => deleteCandidate(props.id)} >
-                        <Remover/>
+                    <div className='ml-3 hover:cursor-pointer' onClick={() => deleteCandidate(props.id)} >
+                        {printRemover()}
                     </div>
                 </div>
                 

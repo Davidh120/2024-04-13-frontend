@@ -15,6 +15,8 @@ import Plus from '../assets/Icon_crear.svg?react'
 import CarColor from '../assets/Icon_vehiculo1.svg?react'
 import LocationColor from '../assets/Icon_puntoubicacion1.svg?react'
 import PersonColor from '../assets/Icon_persona1.svg?react'
+import Done from '../assets/Icon_confirmar.svg?react'
+import Cancel from '../assets/Icon_cancelar.svg?react'
 
 export const DataForm = () => {
 
@@ -26,6 +28,11 @@ export const DataForm = () => {
 
     const setCloseToCreate = () => {
         dataContext.setOpenToCreate(false)
+    }
+
+    const setCloseToEdit = () => {
+        dataContext.setOpenToEdit(false)
+        dataContext.setIsEditing(false)
     }
 
     const createCandidate = async () => {
@@ -58,6 +65,43 @@ export const DataForm = () => {
         
     }
 
+    const updateCandidate = async () => {
+        if (dataContext.candidateRef.current.value.length < 4 || 
+            dataContext.brandRef.current.value.length < 1  || 
+            dataContext.officeRef.current.value.length < 4 ){
+            return null
+        }
+        const new_array = dataContext.candidatesData.map((item) => {
+            if (item.id == dataContext.idToEdit){
+                item.name = dataContext.candidateRef.current.value
+                item.office = dataContext.officeRef.current.value
+                item.brand = dataContext.brandRef.current.value
+                console.log(item)
+            }
+            return item
+        })
+        dataContext.setIsEditing(false)
+        dataContext.setCandidatesData(new_array)
+
+        try {
+            const backendUrl = import.meta.env.VITE_BACKEND_URL
+            const data = await axios.put(`${backendUrl}/candidates/update`,
+                {
+                    "uid": dataContext.idToEdit,
+                    "brand": dataContext.brandRef.current.value,
+                    "office": dataContext.officeRef.current.value,
+                    "candidate": dataContext.candidateRef.current.value
+                }
+        )
+            console.log(data)
+            dataContext.fetchData()
+
+        } catch (error) {
+            console.log(error)
+            dataContext.fetchData()
+        }
+    }
+
     return(
 
         <div className={` relative w-[640px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25);] rounded-[20px] ml-[160px] mt-[98px] transition-height duration-150 ${dataContext.openToCreate || dataContext.openToEdit ? 'h-[393px]' : 'h-[335px]'   }`}>
@@ -74,15 +118,24 @@ export const DataForm = () => {
                     <div className='w-[49px]'>
 
                     </div>
-                    <div className='flex justify-between w-[411.03px]'>
-                        <button className='h-[45px] w-[175px] border-2 border-red1 rounded-[10px]' onClick={() => {setCloseToCreate()}}>
+                    <div className={`flex justify-between w-[411.03px] ${dataContext.openToCreate ? '' : 'hidden'}  `}>
+                        <button className='h-[45px] w-[175px] border-2 border-red1 rounded-[10px] text-[28.66px] text-gray1 font-[500] ' onClick={() => {setCloseToCreate()}}>
                             Cancelar
                         </button>
-                        <button className='h-[45px] w-[175px] border-2 border-blue2 rounded-[10px]' onClick={()=> createCandidate()}>
+                        <button className='h-[45px] w-[175px] border-2 border-blue2 rounded-[10px] text-[28.66px] text-gray1 font-[500]' onClick={()=> createCandidate()}>
                             Crear
                         </button>
                     </div>
-                    
+
+                    <div className={`flex justify-end w-[411.03px] ${dataContext.openToEdit ? '' : 'hidden'}  `}>
+                    <button className='mr-5' onClick={()=> setCloseToEdit()}>
+                            <Cancel />
+                        </button>
+                        <button className='' onClick={() => {updateCandidate()}}>
+                            <Done />
+                        </button>
+                        
+                    </div>
                 </div>
             </div>
         </div>
