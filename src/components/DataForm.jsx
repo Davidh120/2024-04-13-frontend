@@ -39,40 +39,43 @@ export const DataForm = () => {
         dataContext.clearForm()
     }
 
-    const createCandidate = async () => {
+    const createCandidate = () => {
         if (dataContext.candidateRef.current.value.length < 4 || 
             dataContext.brandRef.current.value.length < 1  || 
             dataContext.officeRef.current.value.length < 4 ){
             return null
         }
-        dataContext.setCandidatesData([
-            {id: 0, name: dataContext.candidateRef.current.value, brand: dataContext.brandRef.current.value, office: dataContext.officeRef.current.value},
-            ...dataContext.candidatesData
-        ])
-        
-        try {
-            const backendUrl = import.meta.env.VITE_BACKEND_URL
-            const data = await axios.post(`${backendUrl}/candidates/new`,
-                {
-                    "brand": dataContext.brandRef.current.value,
-                    "office": dataContext.officeRef.current.value,
-                    "candidate": dataContext.candidateRef.current.value
-                }
-        )
-            console.log(data)
-
-            dataContext.setGetDownAnimation(true)
-            await setTimeout(() => {
+        dataContext.setGetDownAnimation(true)
+        setTimeout( async () => {
+            
+            dataContext.setCandidatesData([
+                {id: 0, name: dataContext.candidateRef.current.value, brand: dataContext.brandRef.current.value, office: dataContext.officeRef.current.value},
+                ...dataContext.candidatesData
+            ])
+            
+            try {
+                
+                const backendUrl = import.meta.env.VITE_BACKEND_URL
+                const data = await axios.post(`${backendUrl}/candidates/new`,
+                    {
+                        "brand": dataContext.brandRef.current.value,
+                        "office": dataContext.officeRef.current.value,
+                        "candidate": dataContext.candidateRef.current.value
+                    }
+                )   
+                console.log(data)
+                dataContext.fetchData()
+                dataContext.clearForm()
+                setCloseToCreate()
                 dataContext.setGetDownAnimation(false)
-            }, 200);
-            dataContext.fetchData()
-            dataContext.clearForm()
-            setCloseToCreate()
-
-        } catch (error) {
-            console.log(error)
-            dataContext.fetchData()
-        }
+                
+    
+            } catch (error) {
+                console.log(error)
+                dataContext.fetchData()
+            }
+        }, 200);
+        
         
     }
 
