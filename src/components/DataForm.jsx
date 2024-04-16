@@ -61,6 +61,10 @@ export const DataForm = () => {
         )
             console.log(data)
 
+            dataContext.setGetDownAnimation(true)
+            await setTimeout(() => {
+                dataContext.setGetDownAnimation(false)
+            }, 200);
             dataContext.fetchData()
             dataContext.clearForm()
             setCloseToCreate()

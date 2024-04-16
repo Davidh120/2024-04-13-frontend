@@ -25,10 +25,15 @@ export default {
           '0%': {transform: 'translateX(-200%)'},
           '100%': {transform: 'translateX(0)'},
         },
+        'get-down': {
+          '0%': {transform: 'translateY(0)'},
+          '100%': {transform: 'translateY(50px)'},
+        },
       },
       animation: {
         'wave-left': 'wave 3s  infinite',
-        'erase-in-left': 'erase-in-l 0.15s '
+        'erase-in-left': 'erase-in-l 0.15s ',
+        'get-down': 'get-down 0.2s '
       }
       
     },
