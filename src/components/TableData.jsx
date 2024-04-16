@@ -37,6 +37,7 @@ export const TableData = (props) => {
         dataContext.officeRef.current.value = props.office
         dataContext.candidateRef.current.value = props.candidate
         dataContext.setIsEditing(true)
+        dataContext.setOpenToCreate(false)
     }
 
     const printRemover = () => {

@@ -7,8 +7,8 @@ export const DataContextProvider = (props) => {
 
     const [candidatesData, setCandidatesData] = useState(null) // an array to save the data of the candidates to show
     const [openToCreate, setOpenToCreate] = useState(false) // tell us if the form is open to create new candidate or closed
-    const [openToEdit, setOpenToEdit] = useState(false) // tell us if the form is open to edit a candidate or closed
     const [idToEdit, setIdToEdit] = useState(null) // save the id to the candidate to modify
+    const [openToEdit, setOpenToEdit] = useState(false) // tell us if the form is open to edit a candidate or closed
     const [isEditing, setIsEditing] = useState(false)
 
 
@@ -30,6 +30,12 @@ export const DataContextProvider = (props) => {
         }
     }
 
+    const clearForm = () => {
+        brandRef.current.value = ''
+        officeRef.current.value = ''
+        candidateRef.current.value = ''
+    }
+
     return(
         <DataContext.Provider value={{
             candidatesData,
@@ -45,7 +51,8 @@ export const DataContextProvider = (props) => {
             idToEdit,
             setIdToEdit,
             isEditing,
-            setIsEditing
+            setIsEditing,
+            clearForm
             
 
         }}>

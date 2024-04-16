@@ -24,15 +24,18 @@ export const DataForm = () => {
 
     const setOpenToCreate = () => {
         dataContext.setOpenToCreate(true)
+        setCloseToEdit(false)
     }
 
     const setCloseToCreate = () => {
         dataContext.setOpenToCreate(false)
+        dataContext.clearForm()
     }
 
     const setCloseToEdit = () => {
         dataContext.setOpenToEdit(false)
         dataContext.setIsEditing(false)
+        dataContext.clearForm()
     }
 
     const createCandidate = async () => {
@@ -45,6 +48,7 @@ export const DataForm = () => {
             {id: 0, name: dataContext.candidateRef.current.value, brand: dataContext.brandRef.current.value, office: dataContext.officeRef.current.value},
             ...dataContext.candidatesData
         ])
+        
         try {
             const backendUrl = import.meta.env.VITE_BACKEND_URL
             const data = await axios.post(`${backendUrl}/candidates/new`,
@@ -57,6 +61,8 @@ export const DataForm = () => {
             console.log(data)
 
             dataContext.fetchData()
+            dataContext.clearForm()
+            setCloseToCreate()
 
         } catch (error) {
             console.log(error)
@@ -80,21 +86,19 @@ export const DataForm = () => {
             }
             return item
         })
-        dataContext.setIsEditing(false)
         dataContext.setCandidatesData(new_array)
-
         try {
             const backendUrl = import.meta.env.VITE_BACKEND_URL
-            const data = await axios.put(`${backendUrl}/candidates/update`,
+            await axios.put(`${backendUrl}/candidates/update`,
                 {
                     "uid": dataContext.idToEdit,
                     "brand": dataContext.brandRef.current.value,
                     "office": dataContext.officeRef.current.value,
                     "candidate": dataContext.candidateRef.current.value
                 }
-        )
-            console.log(data)
+            )
             dataContext.fetchData()
+            setCloseToEdit()
 
         } catch (error) {
             console.log(error)
