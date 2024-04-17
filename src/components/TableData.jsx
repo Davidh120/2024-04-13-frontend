@@ -31,11 +31,13 @@ export const TableData = (props) => {
                 arrayB.push(candidate)
             }
         }
+        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
         dataContext.setCandidatesData1(arrayA)
         dataContext.setCandidatesData2(arrayB)
-        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
         setTimeout( async () => {
             try {
+                arrayB.shift()
+                dataContext.setCandidatesData2([...arrayB])
                 const backendUrl = import.meta.env.VITE_BACKEND_URL
                 const data = await axios.delete(`${backendUrl}/candidates/delete/${id}`)
                 console.log(data)
