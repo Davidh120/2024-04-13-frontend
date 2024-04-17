@@ -24,9 +24,10 @@ export const Data = () => {
 
     const printData = () => {
         if (dataContext.candidatesData == null){
-            return (
-                <DataLoading />     
-            )
+            const loadingComponents = Array.from({ length: 15 }, (_, index) => (
+                <DataLoading key={index} />
+              ));
+              return loadingComponents;
         } else if (dataContext.candidatesData == []){
             return (
                 <NotDataJet />
@@ -73,7 +74,7 @@ export const Data = () => {
                             <TableHeader name='Sucursal' width={246} />
                             <TableHeader name='Aspirante' width={385} />
                         </div>
-                        <div className={` ${dataContext.getDownAnimation ? 'animate-get-down' : ''}   `}>                 
+                        <div className={` ${dataContext.getDownAnimation ? 'animate-get-down' : ''} max-h-[665px]  overflow-scroll `}>                 
                             {printData()}
                         </div>
                         
