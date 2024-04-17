@@ -37,8 +37,8 @@ export default {
       animation: {
         'wave-left': 'wave 3s  infinite',
         'erase-in-left': 'erase-in-l 0.15s ',
-        'get-down': 'get-down 0.21s ',
-        'get-up': 'get-up 0.21s '
+        'get-down': 'get-down 0.2s ',
+        'get-up': 'get-up 0.2s '
       }
       
     },
