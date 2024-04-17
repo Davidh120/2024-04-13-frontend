@@ -11,13 +11,21 @@ import RemoverGray from '../assets/Icon_eliminar.svg?react'
 
 
 export const TableData = (props) => {
+    // show the data from any dict on the array of the db response
+    // receives as props:
+    //  brand: brand name
+    //  office: office name
+    //  candidate: candidate name
+    //  id: the unique id from the candidate
 
     const dataContext = useContext(DataContext)
 
     const deleteCandidate = async (id) => {
-        
-        dataContext.setGetUpAnimation(true) // qap
-        dataContext.setDeletingNow(true)
+         // to reset if you are editing when push delete
+        dataContext.setIsEditing(false)
+        dataContext.setOpenToEdit(false)
+        // create a witness and tho arrays, divides the candidates data on the two arrays to
+        // allow the animation on the second half
         let changeArray = false
         let arrayA = []
         let arrayB = []
@@ -31,10 +39,16 @@ export const TableData = (props) => {
                 arrayB.push(candidate)
             }
         }
-        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
+        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id))) // updates the candidatesData array to update that wo require the backend 
         dataContext.setCandidatesData1(arrayA)
         dataContext.setCandidatesData2(arrayB)
+        dataContext.setDeletingNow(true) // indicates to data that render two arrays to able the animation in a half of the candidates data
+        dataContext.setGetUpAnimation(true) // starts the animation to get up the snd part of the candidates data
+        
         setTimeout( async () => {
+            // here removes the fst item on arrayB once time ended the animation adn set that on the snd half of candidates data
+            // then delete the item on the db and uses fetch data to call the data and verify if info in db == info in state
+            // finally closes the animation, set deletingNow to false to render the original candidatesData and clear the form
             try {
                 arrayB.shift()
                 dataContext.setCandidatesData2([...arrayB])
@@ -51,10 +65,12 @@ export const TableData = (props) => {
             } catch (error) {
                 console.log(error)
             }
-        }, 200);
+        }, 201);
     }
 
     const sendCandidateToUpdate = () => {
+        // uses the state to send the id to update and open the form
+        // then set the inputs values with the info on the TableData component
         dataContext.setOpenToEdit(true)
         dataContext.setIsEditing(true)
         dataContext.setOpenToCreate(false)
@@ -65,6 +81,7 @@ export const TableData = (props) => {
     }
 
     const printRemover = () => {
+        // print the remover button, if is updating any Table Data, return one, if is not return the other
         if (dataContext.isEditing && dataContext.idToEdit != props.id){
             return <RemoverGray/>
         }else {
@@ -73,6 +90,7 @@ export const TableData = (props) => {
     }
 
     const printModifier = () => {
+        // print the modifier button, if is updating any Table Data, return one, if is not return the other
         if (dataContext.isEditing && dataContext.idToEdit != props.id){
             return <ModifierGray />
         }else {
