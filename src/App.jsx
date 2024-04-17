@@ -5,6 +5,7 @@ import { Data } from './pages/Data'
 import './App.css'
 
 const AppRoutes = () => {
+  // this component from react router dom help us to manage the navigation as a static site
 
   const routes = useRoutes(
       [

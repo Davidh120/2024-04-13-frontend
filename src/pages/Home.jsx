@@ -1,11 +1,11 @@
 import {useNavigate} from "react-router"
-
+// we calling the svgs to use that as ReactComponents
 import  Logo from '../assets/Imagologo_motion.svg?react'
 import Cellphone from '../assets/Telefono-01.png'
 
 export const Home = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate() // to navigate to /data
 
     return (
         <section className="h-screen font-montserrat overflow-hidden max-w-full" >
@@ -37,7 +37,9 @@ export const Home = () => {
                     <a href="https://github.com/JuanJoven01/2024-04-13-backend" target="_blank">Link repo back</a>
                 </ul>
             </div>
-
+            {/* 
+                we create a twin second div as a copy of the main and animate that to show it in the background, the animation is defined on tailwind.config.js
+            */}
             <div  className='h-[130vh] w-[200vw] relative top-[-15vh] left-full -z-10 rounded-[800px] shadow-[-22px_0px_57px_-15px_rgba(0,0,0,1)] animate-wave-left'></div>
         </section>
     )

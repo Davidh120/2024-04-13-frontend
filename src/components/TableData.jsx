@@ -42,6 +42,9 @@ export const TableData = (props) => {
                 dataContext.fetchData()
                 dataContext.setGetUpAnimation(false) // qap
                 dataContext.setDeletingNow(false)
+                dataContext.brandRef.current.value = props.brand
+                dataContext.officeRef.current.value = props.office
+                dataContext.candidateRef.current.value = props.candidate
 
             } catch (error) {
                 console.log(error)

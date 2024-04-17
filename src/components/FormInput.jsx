@@ -2,6 +2,12 @@
 
 
 export const FormInput = (props) => {
+    // just return an input 
+    // receives as props:
+    //  icon: a svg React component
+    //  max: the max length enabled to the input
+    //  name: used as id and placeholder
+    //  reference: to manipulate and obtain data
 
     return(
         <div className="flex w-full justify-around" >

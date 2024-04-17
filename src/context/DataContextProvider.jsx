@@ -10,16 +10,19 @@ export const DataContextProvider = (props) => {
     const [idToEdit, setIdToEdit] = useState(null) // save the id to the candidate to modify
     const [openToEdit, setOpenToEdit] = useState(false) // tell us if the form is open to edit a candidate or closed
     const [isEditing, setIsEditing] = useState(false)
-    const [getDownAnimation, setGetDownAnimation] = useState(false) // helpus to print a class name to start a animation 
-    const [getUpAnimation, setGetUpAnimation] = useState(false) // helpus to print a class name to start a animation 
+    const [getDownAnimation, setGetDownAnimation] = useState(false) // hel pus to print a class name to start a animation 
+    const [getUpAnimation, setGetUpAnimation] = useState(false) // help us to print a class name to start a animation 
     const [deletingNow, setDeletingNow] = useState(false) // help us to define what should be render when we are removing a candidate
-    const [candidatesData1, setCandidatesData1] = useState(null) 
-    const [candidatesData2, setCandidatesData2] = useState(null) 
+    const [candidatesData1, setCandidatesData1] = useState(null)  // help us to save in a little time lapse the fst part of the data in data table
+    const [candidatesData2, setCandidatesData2] = useState(null) // help us to save in a little time lapse the snd part of the data in data table
+
+    // Creating a references to use that in the input form to get and update the values
     const brandRef = useRef(null)
     const officeRef = useRef(null)
     const candidateRef = useRef(null)
 
     const fetchData = async () => {
+        // will be used a lot of times to refresh the data to show
         try {
             const backendUrl = import.meta.env.VITE_BACKEND_URL
             const data = await axios.get(`${backendUrl}/candidates/get`)
@@ -34,11 +37,13 @@ export const DataContextProvider = (props) => {
     }
 
     const clearForm = () => {
+        // will be used a couple times to clear the data on the form
         brandRef.current.value = ''
         officeRef.current.value = ''
         candidateRef.current.value = ''
     }
 
+    // return all the vars on the context to use in different parts
     return(
         <DataContext.Provider value={{
             candidatesData,
