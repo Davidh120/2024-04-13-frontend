@@ -1,8 +1,19 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#technical test
+React + Vite
 
-Currently, two official plugins are available:
+#To run in local  
+The url to connect the backend is on the .env
+## . env required
+VITE_BACKEND_URL="http://127.0.0.1:8000"
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##Install dependencies
+npm install
+
+##run develop ambient
+npm run dev
+
+##run to deploy in production
+npm run build
+
+source ./dist/
