@@ -33,13 +33,12 @@ export const TableData = (props) => {
         }
         dataContext.setCandidatesData1(arrayA)
         dataContext.setCandidatesData2(arrayB)
+        dataContext.setCandidatesData(dataContext.candidatesData.filter((candidate) => (candidate.id != id)))
         setTimeout( async () => {
-            
             try {
                 const backendUrl = import.meta.env.VITE_BACKEND_URL
                 const data = await axios.delete(`${backendUrl}/candidates/delete/${id}`)
                 console.log(data)
-
                 dataContext.fetchData()
                 dataContext.setGetUpAnimation(false) // qap
                 dataContext.setDeletingNow(false)
@@ -47,10 +46,7 @@ export const TableData = (props) => {
             } catch (error) {
                 console.log(error)
             }
-        }, 2000);
-
-        
-        
+        }, 200);
     }
 
     const sendCandidateToUpdate = () => {

@@ -39,13 +39,13 @@ export const Data = () => {
             } else {
                 return (
                     <div>
-                        <div className=' '>
+                        <div className=' bg-white'>
                             {dataContext.candidatesData1.map((item,index) => (
                             <TableData key={index} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
                             ))}
                         </div>
                         
-                        <div className={`${dataContext.getUpAnimation ? ' animate-get-up' : ''}`} >
+                        <div className={`${dataContext.getUpAnimation ? ' animate-get-up' : ''} bg-white z-[-1] relative`} >
                             {dataContext.candidatesData2.map((item,index) => (
                             <TableData key={index} id={item.id} brand={item.brand} office={item.office} candidate={item.name} />
                             ))}

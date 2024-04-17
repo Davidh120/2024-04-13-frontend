@@ -38,7 +38,7 @@ export default {
         'wave-left': 'wave 3s  infinite',
         'erase-in-left': 'erase-in-l 0.15s ',
         'get-down': 'get-down 0.2s ',
-        'get-up': 'get-up 2s '
+        'get-up': 'get-up 0.3s '
       }
       
     },
