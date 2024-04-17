@@ -29,8 +29,12 @@ export const DataContextProvider = (props) => {
             let response = data.data.response
             response.sort((a, b) => a.id - b.id) // sort the array per dict.id to avoid change order when update
             response.reverse()// to get the latest user in the top
+            // compare if the response is == to the actual candidatesData, if equal, return to avoid a unnecessary render
+            if (JSON.stringify(response) == JSON.stringify(candidatesData)){
+                return
+            }
             setCandidatesData(response)
-            return response
+            return 
         } catch (error) {
             return  {id: null, name: 'Error', brand: 'Error', office: 'Error'}
         }
